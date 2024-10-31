@@ -1,0 +1,61 @@
+@use "sass:list";
+
+$colNum: 12; // Nombre de colonne dans la grille
+$colArray: ""; // Liste vide pour stocker les nos de nos colonnes
+
+// Création d'une liste de colonnes de 1 à 12 grâce à une boucle for
+@for $i from 1 through $colNum {
+  $colArray: list.append($colArray, $i, comma);
+}
+
+// Pour chaque colonne dans la liste des nos colonnes
+@each $col in $colArray {
+  .col-start-#{$col} {
+    grid-column-start: $col; // Définir la colonne de début
+  }
+
+  .col-span-#{$col} {
+    grid-column-end: span $col; // Définir la colonne de fin
+  }
+}
+
+$rowNum: 5; // Nombre de lignes dans la grille
+$rowArray: ""; // Liste vide pour stocker les nos de nos lignes
+
+// Création d'une liste de lignes de 1 à 5 grâce à une boucle for
+@for $i from 1 through $rowNum {
+  $rowArray: list.append($rowArray, $i, comma);
+}
+
+@each $row in $rowArray {
+  .row-start-#{$row} {
+    // Définir la ligne de début
+    grid-row-start: $row;
+  }
+
+  .row-span-#{$row} {
+    // Définir la ligne de fin
+    grid-row-end: span $row;
+  }
+}
+
+$paddingI: 0; // Initialisation à 0
+
+@while $paddingI < 101 {
+  .p-#{$paddingI} {
+    padding: ($paddingI); // padding
+  }
+
+  .pt-#{$paddingI} {
+    padding-top: $paddingI; // padding-top
+  }
+
+  $paddingI: $paddingI + 10; // Incrément de 10
+}
+
+$areasArray: ""; // Liste vide pour stocker les nos de nos areas zones
+@for $i from 0 through 6 {
+  .tuile-#{$i} {
+    grid-area: tuile#{$i}; // no de l'area zone
+  }
+}
